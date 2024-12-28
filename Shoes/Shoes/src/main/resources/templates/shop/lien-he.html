@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/layout :: main-fragment(
+                                                                     ~{:: title},
+                                                                    'header',
+                                                                    'footer',
+                                                                     ~{:: #css-resources},
+                                                                     ~{:: #js-resources},
+                                                                     ~{:: #main-content}
+                                                                    )}">
+<head>
+    <meta charset="UTF-8">
+    <title>Liên hệ</title>
+    <th:block id="css-resources">
+
+    </th:block>
+</head>
+<body>
+<main class="main" id="main-content">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">Liên hệ</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav>
+
+    <div class="container">
+        <div id="map"> <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d476548.3547444841!2d105.71391320651045!3d21.071303358315753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abe10571de89%3A0xa5d898b619bedf4d!2sNike!5e0!3m2!1svi!2s!4v1727254374976!5m2!1svi!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><!-- End #map -->
+        <div class="wrapbox-content-contact">
+            <div class="container">
+                <div class="widthContent">
+                    <div class="row">
+                        <div class="col-lg-7 col-md-7 col-xs-12">
+                            <div class="box-send-contact mb-5">
+                                <h2><i class="fa fa-envelope mr-2"></i><span>Để lại lời nhắn cho chúng tôi</span></h2>
+                                <p class="d-none">Nếu bạn có thắc mắc gì, có thể gửi yêu cầu cho chúng tôi, và chúng tôi sẽ liên lạc lại với bạn sớm nhất có thể .</p>
+                                <div id="col-left contactFormWrapper">
+                                    <form accept-charset="UTF-8" action="/contact" class="contact-form" method="post">
+                                        <input name="form_type" type="hidden" value="contact">
+                                        <input name="utf8" type="hidden" value="✓">
+
+
+                                        <div class="contact-form">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-xs-12">
+                                                    <div class="input-group">
+                                                        <input required="" type="text" name="contact[name]" class="form-control" placeholder="Họ và Tên của bạn" aria-describedby="basic-addon1">
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <input required="" type="email" name="contact[email]" class="form-control" placeholder="Email của bạn" aria-describedby="basic-addon1">
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <input pattern="[0-9]{10,12}" required="" type="text" name="contact[phone]" class="form-control" placeholder="Số điện thoại của bạn" aria-describedby="basic-addon1">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-xs-12">
+                                                    <div class="input-group h-100">
+                                                        <textarea required="" name="contact[body]" placeholder="Nội dung"></textarea>
+                                                        <div class="sitebox-recaptcha d-none">
+                                                            This site is protected by reCAPTCHA and the Google
+                                                            <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>
+                                                            and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms of Service</a> apply.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <button class="button dark">Gửi lời nhắn</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <input id="f7060d2b81fc4b8786d95ea0982ec512" name="g-recaptcha-response" type="hidden" value="03AFcWeA7q9LeI6pY8yyKFJZQlCeu67hBRwrBgE8AOP9NVlUFE6BPlIsAcqmZgv7joFZ1Gp5JV8ecub3mXf-Q_yLxy4v6Wljvyd4lHaCiuXb7oagbmy3e3XC1gREzAsa2-h5Ff20XUHUSkLUOaebqR6eviGtkhHMzgQN1p-dgKKerqhls7RPlYKsHMIBt74OKHC4NcVfTRdrnT3TWvRKZ3M6Eg32Z5EhNY0LdsPB9KmWCyVw4ksXv7asCYDVWIQXVweYOkFU0OEvvMW5Rv7-fNdwnrln6ZQ7Z8HTvNh23vhxjoxvIjxMz49eFGgUfKGDNcL9y1VC1Fsd0j6bDcCdPFegtIm8OB6iBbi6DPs1ZWCz_xBPLhJqpdgh7s69ib3WMHCbz-Vqetn2yVupH_EW55UlbMoy4xnbRCJ72vf0cn92ktBKwDayOi70kiO8dyQUvVeedWNmepoCI3TUsKuwSc8bTtXy3u2fS6E90RTspGNOKX8Jd1iMqVIE5yEzGFRUE9FW7iuc1gHe4Qs_t49ySWLpXvbCi5PicG-Hc5BqNegIvZNAB2qYD8chgGmfsmk1UmQlQsi6A9AmnUpm4ml5DWhgm-WaNhLQ3NiKyygfHN0HOFUcpl_0c8-66USB5SzrxI7tMs07HtoXjh1IPa7trSXCfaGgR_nhH3mAx0D4Mu9Q27xmj9-g9dJE7rZkdb3i7-4lCoYooYP3A2_wJ6fNN5DYAyOL-Rfw-uYCDRPybOdi8t35uVg9uTcig7XCk7C1Pif5EJRweqDzhFNCSXZ5Eo5Xg4jXs7CH4gB03Tfl2Rsh6jcF6bq4VpXyto0qXj4BKHuCsZPsa0xbWDjgIwBd4dwFibiXd_yNeQ1w"><script src="https://www.google.com/recaptcha/api.js?render=6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-"></script><script>grecaptcha.ready(function() {grecaptcha.execute('6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-', {action: 'submit'}).then(function(token) {document.getElementById('f7060d2b81fc4b8786d95ea0982ec512').value = token;});});</script></form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-xs-12">
+                            <div class="box-info-contact">
+                                <h2><i class="fa fa-university mr-2"></i><span>Thông tin liên hệ</span></h2>
+                                <ul class="infoList-contact row">
+                                    <li class="col-md-12 col-xs-12">
+                                        <span><i class="fa fa-map-marker"></i></span>
+                                        <p><strong>Địa chỉ</strong><br>18 Phố Viên Đức Thắng Bắc Từ Liêm Hà Nội</p>
+                                    </li>
+                                    <li class="col-md-12 col-xs-12">
+                                        <span><i class="fa fa-envelope-o"></i></span>
+                                        <p><strong>Email</strong><br>Lehoangviet.17042002@gmail.com</p>
+                                    </li>
+                                    <li class="col-md-12 col-xs-12">
+                                        <span><i class="fa fa-phone"></i></span>
+                                        <p><strong>Điện thoại</strong><br>0394459368</p>
+                                    </li>
+                                    <li class="col-md-12 col-xs-12 d-none">
+                                        <span><i class="fa fa-envelope-o"></i></span>
+                                        <p><strong>Thời gian làm việc</strong><br>Từ 8h – 21h30 các ngày trong tuần ( Trừ ngày Lễ, Tết)</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--        <div class="row">-->
+<!--&lt;!&ndash;            <div class="col-md-8">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h2 class="light-title">Write <strong>Us</strong></h2>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <form action="#">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="form-group required-field">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label for="contact-name">Name</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control" id="contact-name" name="contact-name" required>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&lt;!&ndash; End .form-group &ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <div class="form-group required-field">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label for="contact-email">Email</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="email" class="form-control" id="contact-email" name="contact-email" required>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&lt;!&ndash; End .form-group &ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label for="contact-phone">Phone Number</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="tel" class="form-control" id="contact-phone" name="contact-phone">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&lt;!&ndash; End .form-group &ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <div class="form-group required-field">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <label for="contact-message">What’s on your mind?</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <textarea cols="30" rows="1" id="contact-message" class="form-control" name="contact-message" required></textarea>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&lt;!&ndash; End .form-group &ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <div class="form-footer">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button type="submit" class="btn btn-primary">Submit</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&lt;!&ndash; End .form-footer &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&lt;!&ndash; End .col-md-8 &ndash;&gt;&ndash;&gt;-->
+
+
+<!--            <div class="col-md-4">-->
+<!--                <h2 class="light-title"><strong>Thông tin liên hệ</strong></h2>-->
+
+<!--                <div class="contact-info">-->
+<!--                    <div>-->
+<!--                        <i class="icon-mobile"></i>-->
+<!--                        <p><a href="tel:">039 445 9368</a></p>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <i class="icon-mail-alt"></i>-->
+<!--                        <p><a href="mailto:#">Lehoangviet.17042002@gmail.com</a></p>-->
+<!--                    </div>-->
+<!--                </div>&lt;!&ndash; End .contact-info &ndash;&gt;-->
+<!--            </div>&lt;!&ndash; End .col-md-4 &ndash;&gt;-->
+<!--        </div>&lt;!&ndash; End .row &ndash;&gt;-->
+    </div><!-- End .container -->
+
+    <div class="mb-8"></div><!-- margin -->
+</main><!-- End .main -->
+<th:block id="js-resources">
+
+</th:block>
+</body>
+</html>

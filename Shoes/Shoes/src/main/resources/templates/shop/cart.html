@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Giỏ hàng</title>
+    <th:block th:replace="~{/layout/layout :: head}"></th:block>
+</head>
+<body>
+<main class="main" id="main-content">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
+            </ol>
+        </nav>
+        <div class="cart-container">
+            <h1 class="cart-title">Giỏ hàng của bạn</h1>
+            <table class="cart-table">
+                <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Màu sắc</th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                    <th>Tổng</th>
+                    <th>Xóa</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="item : ${cartItems}">
+                    <tr>
+                        <td>
+                            <a th:href="@{/{slug}/{id}(id=${item.product.id},slug=${item.product.slug})}">
+                                <img th:src="@{${item.product.images}}" alt="${item.product.name}">
+                                <span th:text="${item.product.name}"></span>
+                            </a>
+                        </td>
+                        <td th:text="${item.color}"></td>
+                        <td>
+                            <input type="number" th:value="${item.quantity}" min="1" max="${item.product.quantity}">
+                        </td>
+                        <td th:text="${#numbers.formatDecimal(item.product.price, 0, 'COMMA', 0, 'POINT')} + ' đ'"></td>
+                        <td th:text="${#numbers.formatDecimal(item.total, 0, 'COMMA', 0, 'POINT')} + ' đ'"></td>
+                        <td>
+                            <button class="btn btn-danger" th:attr="data-item-id='${item.id}'">Xóa</button>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+            <div class="cart-summary">
+                <h2>Tổng giỏ hàng:</h2>
+                <p th:text="${#numbers.formatDecimal(cartTotal, 0, 'COMMA', 0, 'POINT')} + ' đ'"></p>
+            </div>
+            <div class="cart-actions">
+                <button class="btn btn-primary" th:attr="data-cart-id='${cartId}'">Cập nhật giỏ hàng</button>
+                <button class="btn btn-success">Thanh toán</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<th:block th:replace="~{/layout/layout :: footer}"></th:block>
+
+<script th:inline="javascript">
+    $(function () {
+        // Xóa sản phẩm khỏi giỏ hàng
+        $('.cart-table button.btn-danger').on('click', function () {
+            let itemId = $(this).data('item-id');
+            $.ajax({
+                url: '/api/cart/remove',
+                type: 'POST',
+                data: {
+                    itemId: itemId
+                },
+                success: function (data) {
+                    toastr.success('Sản phẩm đã được xóa khỏi giỏ hàng');
+                    location.reload();
+                },
+                error: function (error) {
+                    toastr.error('Lỗi khi xóa sản phẩm khỏi giỏ hàng');
+                }
+            });
+        });
+
+        // Cập nhật số lượng sản phẩm trong giỏ hàng
+        $('.cart-table input[type="number"]').on('input', function () {
+            let quantity = $(this).val();
+            let itemId = $(this).closest('tr').data('item-id');
+            $.ajax({
+                url: '/api/cart/update',
+                type: 'POST',
+                data: {
+                    itemId: itemId,
+                    quantity: quantity
+                },
+                success: function (data) {
+                    toastr.success('Số lượng sản phẩm đã được cập nhật');
+                    location.reload();
+                },
+                error: function (error) {
+                    toastr.error('Lỗi khi cập nhật số lượng sản phẩm');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
